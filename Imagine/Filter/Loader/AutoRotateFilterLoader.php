@@ -16,7 +16,7 @@ class AutoRotateFilterLoader implements LoaderInterface
      */
     public function load(ImageInterface $image, array $options = array())
     {
-        $exifData = exif_read_data("data://image/jpeg;base64," . base64_encode($image->get('jpg')));
+        $exifData = @exif_read_data("data://image/jpeg;base64," . base64_encode($image->get('jpg')));
 
         if (isset($exifData['Orientation'])) {
             $orientation = (int) $exifData['Orientation'];
